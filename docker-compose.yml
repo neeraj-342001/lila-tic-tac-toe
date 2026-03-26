@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lila_nk_postgres
+    environment:
+      POSTGRES_DB: nakama
+      POSTGRES_PASSWORD: localdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "nakama"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  nakama:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: lila_nakama
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_ADDRESS: postgres:localdb@postgres:5432/nakama?sslmode=disable
+      SERVER_KEY: defaultkey
+      LOG_LEVEL: debug
+    ports:
+      - "7349:7349"
+      - "7350:7350"
+      - "7351:7351"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

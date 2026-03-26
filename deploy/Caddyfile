@@ -1,0 +1,5 @@
+# Hostname must match DNS and TLS certificate. Set NAKAMA_PUBLIC_HOST in .env (e.g. nakama.yourdomain.com).
+{$NAKAMA_PUBLIC_HOST} {
+	encode gzip
+	reverse_proxy nakama:7350
+}

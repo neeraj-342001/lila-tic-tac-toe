@@ -1,0 +1,5 @@
+name: lila-tic-tac-toe
+logger:
+  level: DEBUG
+session:
+  token_expiry_sec: 7200

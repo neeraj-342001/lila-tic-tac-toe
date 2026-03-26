@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+.env.local
+deploy/.env
+*.so
+.DS_Store

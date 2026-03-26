@@ -1,0 +1,68 @@
+# Production-style stack: Postgres (internal) + Nakama + Caddy (TLS).
+# Usage:
+#   cd deploy
+#   cp .env.production.example .env
+#   # edit .env — strong POSTGRES_PASSWORD, SERVER_KEY, NAKAMA_PUBLIC_HOST
+#   docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+#
+# Point DNS A/AAAA for NAKAMA_PUBLIC_HOST to this machine. Caddy obtains HTTPS certs.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: nakama
+      POSTGRES_USER: nakama
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "nakama", "-d", "nakama"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+    networks:
+      - internal
+
+  nakama:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_ADDRESS: nakama:${POSTGRES_PASSWORD}@postgres:5432/nakama?sslmode=disable
+      SERVER_KEY: ${SERVER_KEY:?set SERVER_KEY in .env}
+      LOG_LEVEL: info
+    expose:
+      - "7350"
+    restart: unless-stopped
+    networks:
+      - internal
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      NAKAMA_PUBLIC_HOST: ${NAKAMA_PUBLIC_HOST:?set NAKAMA_PUBLIC_HOST in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - nakama
+    restart: unless-stopped
+    networks:
+      - internal
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
+
+networks:
+  internal:

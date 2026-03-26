@@ -1,0 +1,220 @@
+.shell {
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero h1 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #f0f4fa 0%, #8fa8c8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #6b7c93;
+}
+
+.lede {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #9aa8bc;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  backdrop-filter: blur(8px);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #b8c4d6;
+}
+
+.pill.ok {
+  background: rgba(46, 196, 140, 0.15);
+  color: #6ee7b7;
+}
+
+.muted {
+  font-size: 0.8rem;
+  color: #7a8aa0;
+}
+
+.mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.modes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mode {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #c5d0e0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.mode input {
+  accent-color: #5b8cff;
+}
+
+.mode.active {
+  background: rgba(91, 140, 255, 0.1);
+  border-color: rgba(91, 140, 255, 0.35);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+button.primary {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #0a0d12;
+  background: linear-gradient(180deg, #c8ddff 0%, #5b8cff 100%);
+  box-shadow: 0 4px 20px rgba(91, 140, 255, 0.35);
+}
+
+button.primary:active {
+  transform: translateY(1px);
+}
+
+button.ghost {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.65rem;
+  background: transparent;
+  color: #e8ecf1;
+  cursor: pointer;
+}
+
+.err {
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+  color: #f87171;
+}
+
+.game {
+  margin-top: 1rem;
+}
+
+.hud p {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  color: #b4c0d4;
+}
+
+.hud strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.timer {
+  font-family: "JetBrains Mono", monospace;
+  color: #7dd3fc;
+}
+
+.result {
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  color: #e8ecf1 !important;
+}
+
+.warn {
+  color: #fbbf24 !important;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  font-size: clamp(1.5rem, 8vw, 2rem);
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+  color: #e8ecf1;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.cell:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.cell:not(:disabled):hover {
+  background: rgba(91, 140, 255, 0.15);
+  border-color: rgba(91, 140, 255, 0.4);
+}
+
+.cell.win {
+  background: rgba(46, 196, 140, 0.2);
+  border-color: rgba(46, 196, 140, 0.5);
+  color: #6ee7b7;
+}
+
+.foot {
+  margin-top: auto;
+  font-size: 0.78rem;
+  color: #5c6b82;
+  line-height: 1.5;
+}
+
+.foot code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  color: #8fa0b8;
+}
