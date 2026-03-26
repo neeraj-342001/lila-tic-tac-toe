@@ -63,7 +63,8 @@ Opcodes are defined in `backend/match.go` and `frontend/src/protocol.ts` and mus
 
 ## Deployment (production)
 
-Step-by-step checklist (VPS + Caddy + static frontend) lives in **[`deploy/DEPLOYMENT.md`](deploy/DEPLOYMENT.md)**.
+Linear checklist (DNS → server `.env` → Vercel `VITE_*` → test): **[`deploy/FINAL-STEPS.md`](deploy/FINAL-STEPS.md)**.  
+More detail: **[`deploy/DEPLOYMENT.md`](deploy/DEPLOYMENT.md)**.
 
 **Short version**
 
