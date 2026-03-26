@@ -8,6 +8,13 @@ Take-home style project: **server-authoritative** tic-tac-toe on [Nakama](https:
 - **Frontend**: Vite + React + TypeScript (`frontend/`) using `@heroiclabs/nakama-js` (device auth, socket, RPC, match data).
 - **Local stack**: Docker Compose runs PostgreSQL + Nakama with the plugin loaded.
 
+## Assignment submission (LILA / PDF deliverables)
+
+Everything maps to one place: **[`SUBMISSION.md`](SUBMISSION.md)** — GitHub repo, Vercel URL, Nakama endpoint (tunnel), and README section links.  
+**Google Drive:** copy or PDF-export `SUBMISSION.md` into your shared folder and submit that folder’s public link on the form.
+
+- **Tunnel (local Nakama → HTTPS):** **[`deploy/LOCAL-TUNNEL.md`](deploy/LOCAL-TUNNEL.md)**
+
 ## Prerequisites
 
 - Docker Desktop (or Docker Engine) for the Nakama stack
@@ -112,7 +119,8 @@ lila-tic-tac-toe/
 │   ├── match.go
 │   ├── rpc.go
 │   └── local.yml
-├── deploy/            # Production compose + Caddy + DEPLOYMENT.md
+├── deploy/            # Production compose, Caddy, tunnel + deployment docs
+├── SUBMISSION.md      # Fill in for take-home (URLs + tunnel note)
 ├── docker-compose.yml
 ├── frontend/          # Vite React client
 └── README.md
